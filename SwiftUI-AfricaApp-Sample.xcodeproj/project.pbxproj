@@ -29,6 +29,9 @@
 		49106CF02A66B4DE00A15CE0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49106CEF2A66B4DE00A15CE0 /* MapView.swift */; };
 		49106CF22A66B52700A15CE0 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49106CF12A66B52700A15CE0 /* GalleryView.swift */; };
 		49106CF42A66B55200A15CE0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49106CF32A66B55200A15CE0 /* MainView.swift */; };
+		49B109472A74098800FC6812 /* CoverImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B109462A74098800FC6812 /* CoverImageView.swift */; };
+		49B1094A2A740BBD00FC6812 /* CoverImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B109492A740BBD00FC6812 /* CoverImageModel.swift */; };
+		49B1094D2A741C2900FC6812 /* CodableBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B1094C2A741C2900FC6812 /* CodableBundleExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		49106CEF2A66B4DE00A15CE0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		49106CF12A66B52700A15CE0 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		49106CF32A66B55200A15CE0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		49B109462A74098800FC6812 /* CoverImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImageView.swift; sourceTree = "<group>"; };
+		49B109492A740BBD00FC6812 /* CoverImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImageModel.swift; sourceTree = "<group>"; };
+		49B1094C2A741C2900FC6812 /* CodableBundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableBundleExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,11 +94,14 @@
 		49106CB42A669A3D00A15CE0 /* SwiftUI-AfricaApp-Sample */ = {
 			isa = PBXGroup;
 			children = (
-				49106CEB2A66B37E00A15CE0 /* Info.plist */,
+				49B1094B2A741BF200FC6812 /* Extension */,
+				49B109482A740BA200FC6812 /* Model */,
+				49B109452A74095000FC6812 /* View */,
 				49106CE22A66B1F600A15CE0 /* Data */,
 				49106CC32A66B0CE00A15CE0 /* Video */,
 				49106CEC2A66B45B00A15CE0 /* App */,
 				49106CB92A669A3E00A15CE0 /* Assets.xcassets */,
+				49106CEB2A66B37E00A15CE0 /* Info.plist */,
 				49106CBB2A669A3F00A15CE0 /* Preview Content */,
 			);
 			path = "SwiftUI-AfricaApp-Sample";
@@ -145,6 +154,30 @@
 				49106CF32A66B55200A15CE0 /* MainView.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		49B109452A74095000FC6812 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				49B109462A74098800FC6812 /* CoverImageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		49B109482A740BA200FC6812 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				49B109492A740BBD00FC6812 /* CoverImageModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		49B1094B2A741BF200FC6812 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				49B1094C2A741C2900FC6812 /* CodableBundleExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,10 +266,13 @@
 			files = (
 				49106CB82A669A3D00A15CE0 /* ContentView.swift in Sources */,
 				49106CF42A66B55200A15CE0 /* MainView.swift in Sources */,
+				49B109472A74098800FC6812 /* CoverImageView.swift in Sources */,
+				49B1094A2A740BBD00FC6812 /* CoverImageModel.swift in Sources */,
 				49106CF02A66B4DE00A15CE0 /* MapView.swift in Sources */,
 				49106CB62A669A3D00A15CE0 /* SwiftUI_AfricaApp_SampleApp.swift in Sources */,
 				49106CEE2A66B4B900A15CE0 /* VideoListView.swift in Sources */,
 				49106CF22A66B52700A15CE0 /* GalleryView.swift in Sources */,
+				49B1094D2A741C2900FC6812 /* CodableBundleExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
