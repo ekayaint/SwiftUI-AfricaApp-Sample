@@ -29,14 +29,61 @@ struct MapView: View {
             //MapMarker(coordinate: item.location, tint: .accentColor)
             
             // (B) Custom Basic Annotation ( interactive)
-            MapAnnotation(coordinate: item.location){
+            /*MapAnnotation(coordinate: item.location){
                 Image("logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 32, height: 32, alignment: .center)
             } // MapAnnotation
+            */
             
-        })
+            // (C) Custom Advanced Annotation ( interactive )
+            MapAnnotation(coordinate: item.location) {
+                MapAnnotationView(location: item)
+            }
+            
+        }) //: Map
+        .overlay(
+            HStack(alignment: .center, spacing: 12) {
+                Image("compass")
+                .resizable()
+                .scaledToFit()
+            .frame(width: 48, height: 48, alignment: .center)
+                
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack{
+                        Text("Latitude:")
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .foregroundColor(.accentColor)
+                        Spacer()
+                        Text("\(region.center.latitude)")
+                            .font(.footnote)
+                            .foregroundColor(.white)
+                    } //: HStack
+                    
+                    Divider()
+                    
+                    HStack{
+                        Text("Longitude:")
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .foregroundColor(.accentColor)
+                        Spacer()
+                        Text("\(region.center.longitude)")
+                            .font(.footnote)
+                            .foregroundColor(.white)
+                    } //: HStack
+                    
+                } //: VStack
+            } //: HStack
+                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
+                .background(Color.black.cornerRadius(8).opacity(0.6))
+                .padding()
+            ,alignment: .top
+        )
+        
     }
 }
 
