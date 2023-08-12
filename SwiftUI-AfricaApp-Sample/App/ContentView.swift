@@ -9,19 +9,73 @@ import SwiftUI
 
 struct ContentView: View {
     let animals: [Animal] = Bundle.main.decode("animals.json")
+    let haptics = UIImpactFeedbackGenerator(style: .medium)
+    
+    @State private var isGridViewActive: Bool = false
+    @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
+    @State private var gridColumnCount: Int = 1
+    @State private var toolbarIcon: String = "square.grid.2x2"
+    
+    func gridSwitch() {
+        gridLayout = Array(repeating: .init(.flexible()), count: gridLayout.count % 3 + 1)
+        gridColumnCount = gridLayout.count
+    }
+    
     var body: some View {
         NavigationView{
-            List {
-                CoverImageView()
-                    .frame(height: 300)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                ForEach(animals) {animal in
-                    NavigationLink(destination: AnimalDetailView(animal: animal)) {
-                        AnimalListItemView(animal: animal)
-                    } // Link
-                }
-            } //: List
+            Group{
+                if !isGridViewActive {
+                    List {
+                        CoverImageView()
+                            .frame(height: 300)
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        ForEach(animals) {animal in
+                            NavigationLink(destination: AnimalDetailView(animal: animal)) {
+                                AnimalListItemView(animal: animal)
+                            } // Link
+                        }
+                    } //: List
+                } else {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
+                            ForEach(animals) { animal in
+                                NavigationLink(destination: AnimalDetailView(animal: animal)) {
+                                    AnimalGridItemView(animal: animal)
+                                }
+                            } //: ForEach
+                        } //: Grid
+                        .padding(10)
+                        //.animation(.easeIn, value: gridLayout)
+                    } //: ScrollView
+                } //: List
+            } //: Group
             .navigationBarTitle("Africa", displayMode: .large)
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing)
+                {
+                    HStack(spacing: 16) {
+                        Button(action: {
+                            isGridViewActive = false
+                            haptics.impactOccurred()
+                        }) {
+                            Image(systemName: "square.fill.text.grid.1x2")
+                                .font(.title2)
+                                .foregroundColor(isGridViewActive ? .primary : .accentColor)
+                        }
+                        
+                        Button(action: {
+                            isGridViewActive = true
+                            haptics.impactOccurred()
+                            gridSwitch()
+                        }) {
+                            Image(systemName: "square.grid.2x2")
+                                .font(.title2)
+                                .foregroundColor(isGridViewActive ? .accentColor : .primary)
+                        }
+                        
+                    } //: HStack
+                } //: Buttons
+            } //: Toolbar
         } //: NavigationView
     }
 }

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct GalleryView: View {
     @State private var selectedAnimal: String = "lion"
+    
     let animals: [Animal] = Bundle.main.decode("animals.json")
+    let haptics = UIImpactFeedbackGenerator(style: .medium)
     /*let gridLayout: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -39,7 +41,9 @@ struct GalleryView: View {
                 Slider(value: $gridColumn, in: 2...4, step: 1)
                     .padding(.horizontal)
                     .onChange(of: gridColumn, perform: {value in
-                        gridSwitch()
+                        withAnimation(.easeIn) {
+                            gridSwitch()
+                        }
                     })
                 // MARK: - Grid
                 LazyVGrid(columns: gridLayout,alignment: .center, spacing: 10) {
@@ -50,10 +54,14 @@ struct GalleryView: View {
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.white, lineWidth: 1))
                             .onTapGesture {
-                                selectedAnimal = item.image
+                                withAnimation(.easeOut){
+                                    selectedAnimal = item.image
+                                }
+                                haptics.impactOccurred()
                             }
                     } //: ForEach
                 } //: Grid
+                 
                 .onAppear(perform: {
                     gridSwitch()
                 })
